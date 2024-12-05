@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row">
+<div class="col-md-4 offset-md-4">
+    <!-- la tarjeta card -->
+    <div class="card"><!-- tarjeta -->
+        <div class="card-body"> 
+          <form action="/editarVenta/" method="POST"> {% csrf_token %}<!-- formulario -->
+            
+            <div class="form-group">
+              <input type="number" id="txtcodigo" name="txtcodigo" class="form-control"
+              value="{{ misventas.id_venta }}" required >
+            </div>
+
+            <div class="form-group py-3">
+              <input type="number" step="0.01" id="numingresos" name="numingresos" class="form-control"
+              value="{{ misventas.cantidad }}" required >
+            </div>
+
+            <div class="form-group py-3">
+              <input type="number" id="numidcliente" name="numidcliente" class="form-control"
+              value="{{ misventas.id_cliente }}" required >
+            </div>
+
+            <div class="form-group py-3">
+              <input type="number" id="numidempleado" name="numidempleado" class="form-control"
+              value="{{ misventas.id_empleado }}" required >
+            </div>
+
+            <div class="form-group py-3">
+              <input type="number" id="numidrefaccion" name="numidrefaccion" class="form-control"
+              value="{{ misventas.id_refaccion }}" required >
+            </div>
+
+            <div class="form-group py-3">
+                <input type="number" step="0.01" id="numtotal" name="numtotal" class="form-control"
+                value="{{misventas.total}}" required >
+              </div>
+
+            <div class="form-group py-2">
+                <input type="date" id="datefecha" name="datefecha" class="form-control"
+                value="{{ fecha_venta }}" required >
+              </div>
+
+            <div class="form-group py-2">
+              <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+          </form> <!-- formulario -->
+        </div>
+
+    <!-- fin la tarjeta card -->
+</div> <!-- columna -->
+
+</div> <!-- la fila -->
+
+{% endblock %}

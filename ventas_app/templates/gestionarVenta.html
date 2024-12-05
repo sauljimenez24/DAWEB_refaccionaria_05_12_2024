@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+    <div class="row"><!-- la fila -->
+
+        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"><!-- columna izquierda -->
+            <h1> Registrar Venta</h1>
+            <div class="card"><!-- tarjeta -->
+              <div class="card-body"> 
+                <form action="/registrarVenta/" method="POST"> {% csrf_token %}<!-- formulario -->
+
+                  <div class="form-group">
+                    <input type="number" id="txtcodigo" name="txtcodigo" class="form-control"
+                    placeholder="Código Venta" required >
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="number" step="0.01" id="numingresos" name="numingresos" class="form-control"
+                    placeholder="Cantidad" required >
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="number" id="numidcliente" name="numidcliente" class="form-control"
+                    placeholder="ID Cliente" required >
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="number" id="numidempleado" name="numidempleado" class="form-control"
+                    placeholder="ID Empleado" required >
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="number" id="numidrefaccion" name="numidrefaccion" class="form-control"
+                    placeholder="ID Refacción" required >
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="number" step="0.01" id="numtotal" name="numtotal" class="form-control"
+                    placeholder="Total Refaccion" required >
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="date" id="datefecha" name="datefecha" class="form-control"
+                    required >
+                  </div>
+
+                  <div class="form-group py-2">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                  </div>
+
+                </form> <!-- formulario -->
+              </div>
+            </div><!-- tarjeta -->
+        </div><!-- columna izquierda -->
+        <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8"><!-- columna derecha -->
+          <img class="w-50" src="{% static 'img/Ventas.png' %}" width="400" height="400" alt="Ventas">
+            <h1>Listado de Ventas</h1>
+            <div class="table-responsive"><!-- tabla responsiva -->
+                <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Id Venta</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">ID Cliente</th>
+                        <th scope="col">ID Empleado</th>
+                        <th scope="col">ID Refacción</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Fecha Venta</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for m in misventas %}
+                      <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ m.id_venta }}</td>
+                        <td>{{ m.cantidad }}</td>
+                        <td>{{ m.id_cliente }}</td>
+                        <td>{{ m.id_empleado }}</td>
+                        <td>{{ m.id_refaccion }}</td>
+                        <td>{{ m.total }}</td>
+                        <td>{{ m.fecha_venta }}</td>
+                        <td><a href="seleccionarVenta/{{ m.id_venta }}" class="btn btn-info">Editar</a></td>
+                        <td><a href="borrarVenta/{{ m.id_venta }}" class="btn btn-danger">Borrar</a></td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+            </div><!-- tabla responsiva -->
+        </div><!-- columna derecha -->
+
+    </div><!-- la fila-->
+{% endblock %}
