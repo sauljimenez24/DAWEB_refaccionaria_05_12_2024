@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row">
+<div class="col-md-4 offset-md-4">
+    <!-- la tarjeta card -->
+    <div class="card"><!-- tarjeta -->
+        <div class="card-body"> 
+          <form action="/editarRefaccion/" method="POST"> {% csrf_token %}<!-- formulario -->
+            
+            <div class="form-group">
+              <input type="number" id="txtcodigo" name="txtcodigo" class="form-control"
+              value="{{ misrefacciones.id_refaccion }}" required >
+            </div>
+
+            <div class="form-group py-3">
+              <input type="text" id="txtnombre" name="txtnombre" class="form-control"
+              value="{{ misrefacciones.nombre_refaccion }}" maxLength="100" required >
+            </div>
+
+            <div class="form-group py-3">
+              <input type="number" id="numcantidad" name="numcantidad" class="form-control"
+              value="{{ misrefacciones.cantidad }}" required >
+            </div>
+
+            <div class="form-group py-3">
+              <input type="number" step="0.01" id="numprecio" name="numprecio" class="form-control"
+              value="{{ misrefacciones.precio }}" required >
+            </div>
+
+            <div class="form-group py-3">
+              <input type="text" id="txtmarca" name="txtmarca" class="form-control"
+              value="{{ misrefacciones.marca }}" maxLength="100" required >
+            </div>
+
+            <div class="form-group py-3">
+              <input type="number" id="numidprov" name="numidprov" class="form-control"
+              value="{{ misrefacciones.id_provedor }}" required >
+            </div>
+
+            <div class="form-group py-2">
+              <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+          </form> <!-- formulario -->
+        </div>
+
+    <!-- fin la tarjeta card -->
+</div> <!-- columna -->
+
+</div> <!-- la fila -->
+{% endblock %}
