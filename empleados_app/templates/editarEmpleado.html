@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row">
+<div class="col-md-4 offset-md-4">
+    <!-- la tarjeta card -->
+    <div class="card"><!-- tarjeta -->
+        <div class="card-body"> 
+          <form action="/editarEmpleado/" method="POST"> {% csrf_token %}<!-- formulario -->
+            
+            <div class="form-group">
+              <input type="number" id="txtcodigo" name="txtcodigo" class="form-control"
+              value="{{ misempleados.id_empleado }}" required >
+            </div>
+
+            <div class="form-group py-3">
+              <input type="number" id="numcel" name="numcel" class="form-control"
+              value="{{ misempleados.numero_de_cel }}" required >
+            </div>
+
+            <div class="form-group py-3">
+              <input type="date" id="txtfechanac" name="txtfechanac" class="form-control"
+              value="{{ fecha_nac }}" required >
+            </div>
+
+            <div class="form-group py-3">
+              <input type="text" id="txtdireccion" name="txtdireccion" class="form-control"
+              value="{{ misempleados.direccion }}" required >
+            </div>
+
+            <div class="form-group py-3">
+              <input type="text" id="txtsexo" name="txtsexo" class="form-control"
+              value="{{ misempleados.sexo }}" required >
+            </div>
+
+            <div class="form-group py-3">
+              <input type="email" id="txtcorreo" name="txtcorreo" class="form-control"
+              value="{{ misempleados.correo }}" required >
+            </div>
+
+            <div class="form-group py-2">
+              <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+          </form> <!-- formulario -->
+        </div>
+
+    <!-- fin la tarjeta card -->
+</div> <!-- columna -->
+
+</div> <!-- la fila -->
+{% endblock %}

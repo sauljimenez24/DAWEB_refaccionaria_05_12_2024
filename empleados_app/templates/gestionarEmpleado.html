@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+    <div class="row"><!-- la fila -->
+
+        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"><!-- columna izquierda -->
+            <h1> Registrador</h1>
+            <div class="card"><!-- tarjeta -->
+              <div class="card-body"> 
+                <form action="/registrarEmpleado/" method="POST"> {% csrf_token %}<!-- formulario -->
+
+                  <div class="form-group">
+                    <input type="number" id="txtcodigo" name="txtcodigo" class="form-control"
+                    placeholder="Codigo Empleado" required >
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="number" id="numcel" name="numcel" class="form-control"
+                    placeholder="Numero Celular" required >
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="date" id="txtfechanac" name="txtfechanac" class="form-control"
+                    placeholder="Fecha de Nacimiento" required >
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="text" id="txtdireccion" name="txtdireccion" class="form-control"
+                    placeholder="Direccion" maxLength="255" required >
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="text" id="txtsexo" name="txtsexo" class="form-control"
+                    placeholder="Sexo (Masculino/Femenino)" maxLength="10" required >
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="email" id="txtcorreo" name="txtcorreo" class="form-control"
+                    placeholder="Correo Electronico" maxLength="50" required >
+                  </div>
+
+                  <div class="form-group py-2">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                  </div>
+
+                </form> <!-- formulario -->
+              </div>
+            </div><!-- tarjeta -->
+        </div><!-- columna izquierda -->
+        <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8"><!-- columna derecha -->
+          <img class="w-50" src="{% static 'img/Empleados.png' %}" width="400" height="400" alt="Empleados">
+            <h1>Listado de empleados</h1>
+            <div class="table-responsive"><!-- tabla responsiva -->
+                <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Id Empleado</th>
+                        <th scope="col">Numero Celular</th>
+                        <th scope="col">Fecha Nacimiento</th>
+                        <th scope="col">Direccion</th>
+                        <th scope="col">Sexo</th>
+                        <th scope="col">Correo</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for m in misempleados %}
+                      <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ m.id_empleado }}</td>
+                        <td>{{ m.numero_de_cel }}</td>
+                        <td>{{ m.fecha_nac }}</td>
+                        <td>{{ m.direccion }}</td>
+                        <td>{{ m.sexo }}</td>
+                        <td>{{ m.correo }}</td>
+                        <td><a href="seleccionarEmpleado/{{ m.id_empleado }}" class="btn btn-info">Editar</a></td>
+                        <td><a href="borrarEmpleado/{{ m.id_empleado }}" class="btn btn-danger">Borrar</a></td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+            </div><!-- tabla responsiva -->
+        </div><!-- columna derecha -->
+
+    </div><!-- la fila-->
+{% endblock %}
