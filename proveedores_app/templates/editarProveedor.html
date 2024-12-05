@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row">
+<div class="col-md-4 offset-md-4">
+    <!-- la tarjeta card -->
+    <div class="card"><!-- tarjeta -->
+        <div class="card-body"> 
+          <form action="/editarProveedor/" method="POST"> {% csrf_token %}<!-- formulario -->
+            
+            <div class="form-group">
+              <input type="number" id="txtcodigo" name="txtcodigo" class="form-control"
+              value="{{ misproveedores.id_proveedor }}" required >
+            </div>
+
+            <div class="form-group py-3">
+              <input type="text" id="txtnombre" name="txtnombre" class="form-control"
+              value="{{ misproveedores.nombre }}" maxLength="100" required >
+            </div>
+
+            <div class="form-group py-3">
+              <input type="email" id="txtcorreo" name="txtcorreo" class="form-control"
+              value="{{ misproveedores.correo }}" maxLength="50" required >
+            </div>
+
+            <div class="form-group py-3">
+              <input type="number" id="numtelefono" name="numtelefono" class="form-control"
+              value="{{ misproveedores.telefono }}" required >
+            </div>
+
+            <div class="form-group py-3">
+              <input type="text" id="txtdireccion" name="txtdireccion" class="form-control"
+              value="{{ misproveedores.direccion }}" required >
+            </div>
+
+            <div class="form-group py-2">
+              <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+          </form> <!-- formulario -->
+        </div>
+
+    <!-- fin la tarjeta card -->
+</div> <!-- columna -->
+
+</div> <!-- la fila -->
+{% endblock %}
